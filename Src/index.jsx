@@ -1,20 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 import { BrowserRouter } from "react-router-dom";
 
-import "./index.css";
-import App from "./App";
+import App from './App';
+import MovieContextProvider, { MovieContext } from './context/movie.context';
 
-// context provider
-import MovieProvider from "./context/movie.context";
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MovieProvider>
-        <App />
-      </MovieProvider>
+    <MovieContextProvider>
+    <App />
+    </MovieContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
+
