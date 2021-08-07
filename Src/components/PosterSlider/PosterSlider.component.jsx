@@ -1,31 +1,36 @@
 import React from 'react';
-import settings from '../../Config/PosterCarosel.config';
+import Slider from 'react-slick';
 
-import Slider from "react-slick";
-import Poster from '../Poster/Poster.component';
 
- const PosterSlider = (props) => {
-    const PosterSettings= props.config? props.config: settings;
+//component
+import Poster from '../Poster/poster.component';
+
+//configs
+import PosterCarousalsettings from '../../config/PosterCarousal.config';
+
+
+const PosterSlider = (props) => {
+
+    const sliderConfig = props.config ? props.config : PosterCarousalsettings
+
 
     return (
         <div>
-            <div className="container mx-auto px-2">
-          <div className={`flex flex-col py-6 ${props.isDark? "text-white" : "text-gray-800"}`}>
-                <h2 className="font-bold text-2xl ">{props.title}</h2>
-                <p>{props.subtitle}</p>
-            </div>
-            <Slider {...PosterSettings}>
-            
-            {props.images.map((image)=>(
+             <div className="flex flex-col items-start my-2 ">
+            <h3 className={`text-2xl font-bold ${props.isDark ? "text-white":"text-gray-800"}`}>{props.title}</h3>
+            <p className={`text-sm ${props.isDark ? "text-white":"text-gray-800"}`}>{props.subtitle}</p>
+        </div>
+
+            <Slider {...sliderConfig } />
+
+            <Slider {...PosterCarousalsettings}>
+
+                {props.images.map((image) => ( 
                 <Poster {...image} isDark={props.isDark}/>
-            ))}
+                ))}
             </Slider>
-
-            
         </div>
-            
-        </div>
-    )
-}
+    );
+};
 
-export default PosterSlider
+export default PosterSlider;

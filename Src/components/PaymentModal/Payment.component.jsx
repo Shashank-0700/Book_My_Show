@@ -1,41 +1,37 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
-export default function PaymentModal({isOpen, setIsOpen, price}) {
+export default function PaymentModal({ isOpen, setIsOpen, price }) {
 
   function closeModal() {
     setIsOpen(false)
   }
 
-
-  const LaunchRazorPay =() =>{
-      let options={
-        "key": "rzp_test_4CZQbHXNdPEybH", // Enter the Key ID generated from the Dashboard
-        "amount": price*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-        "currency": "INR",
-        "name": "Book My Show",
-        "description": "Secure payment gateway",
-        "image": "https://i.ibb.co/zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
-        "handler":()=>{
+  const launchRazorPay = () => {
+      let options = {
+        Key: "rzp_test_J2cVuoXIYmLT21",
+        amount: price * 100,
+        currency: "INR",
+        name: "Book My Show Clone",
+        description: "Movie Purchase or Rental",
+        image: "https://i.ibb.co//zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
+        handler: () => {
             setIsOpen(false);
-            alert("Payment Done")
+            alert("Payment Done");
         },
-        "theme": {
-            "color": "#c4242d"
-        }
+        theme: {color: "#c4242d"},
       };
-
-      let rzp = new window.Razorpay(options);
-      rzp.open();
-  }
+      let razorPay = new window.Razorpay(options);
+      razorPay.open();
+  };
 
   return (
     <>
-
-      <Transition appear show={isOpen} as={Fragment}>
+     
+      <Transition  appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-10 overflow-y-auto z-50"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -72,28 +68,28 @@ export default function PaymentModal({isOpen, setIsOpen, price}) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment gateway
+                  Please make a payment
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Click on the button for a secure payment
+                    heyy checkout this below button to make a payment.
                   </p>
                 </div>
 
-                <div className="mt-4">
+                <div className=" w-full mt-4">
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-500 border border-transparent rounded-md hover:bg-red-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                    onClick={LaunchRazorPay}
+                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={launchRazorPay}
                   >
-                    Pay ₹{price}
+                    pay ₹{ price }
                   </button>
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-500 border border-transparent rounded-md  focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    className="mt-3 w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                     onClick={closeModal}
                   >
-                    Close
+                    Cancle Payment
                   </button>
                 </div>
               </div>
